@@ -1,57 +1,86 @@
-.hero{
-    position: relative;
-}
-.banner-img{
-    width: 100%;
-    mask-image: linear-gradient(to right,transparent ,black 75%);
-    -weblit-mask-image:linear-gradient(to right,transparent,black 75%)
-}
-.hero-caption{
-    position: absolute;
-    width: 100%;
-    padding-left: 6%;
-    bottom: 0;
-}
-.caption-img{
-    width: 90%;
-    max-width: 420px;
-    margin-bottom:30px ;
-}
-.hero-caption p{
-    max-width: 700px;
-    font-size: 17px;
-    margin-bottom: 20px;
-}
-.hero-btns{
-    display: flex;
-    gap:10px;
-    margin-bottom: 50px;
-}
-.hero-btns .btn img{
-    width: 25px;
-}
-.hero-btns .btn{
-
-    border: 0;
-    outline: 0;
-    padding: 8px 20px;
-    display: inline-flex;
-    align-items: center;
-    gap:10px;
-    font-size: 15px;
-    font-weight: 600;
-    background: white;
-    border-radius: 4px;
-    cursor: pointer;
+.hero {
+  position: relative;
+  width: 100%;
+  height: 90vh; 
+  overflow: hidden;
 }
 
-.hero-btns .btn.dark-btn{
-    color: #fff;
-    background: #6d6d6eb3;
-} 
-.hero-btns .btn:hover{
-    background: #ffffffbf;
+
+.banner-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  -webkit-mask-image: linear-gradient(to right, transparent, black 75%);
+  mask-image: linear-gradient(to right, transparent, black 75%);
 }
-.hero-btns .btn.dark-btn:hover{
-    background: #6d6d6e66;
+
+.hero-caption {
+  position: absolute;
+  top: 70%;
+  transform: translateY(-50%);
+  width: 100%;
+  padding: 0 6%;
+  color: white;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+
+.caption-img {
+  width: 90%;
+  max-width: 420px;
+  margin-bottom: 20px;
+}
+
+.hero-caption p {
+  max-width: 700px;
+  font-size: 17px;
+  margin-bottom: 25px;
+  line-height: 1.4;
+  color: white;
+}
+
+.hero-btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+
+.hero-btns .btn img {
+  width: 25px;
+}
+
+.hero-btns .btn {
+  border: 0;
+  outline: 0;
+  padding: 8px 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  font-weight: 600;
+  background: white;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.hero-btns .btn.dark-btn {
+  color: #fff;
+  background: #6d6d6eb3;
+}
+
+.hero-btns .btn:hover {
+  background: #ffffffbf;
+}
+
+.hero-btns .btn.dark-btn:hover {
+  background: #6d6d6e66;
+}
+.more-cards{
+  padding-left: 6%; 
 }

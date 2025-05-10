@@ -1,10 +1,48 @@
-import React from 'react'
-import './Login.css'
+import React, { useState } from 'react';
+import './Login.css';
+import logo from '../../assets/logo.png';
 
 function Login() {
+  const [signState, setSignState] = useState('Sign Up');
+
+  const toggleSignState = () => {
+    setSignState((prev) => (prev === 'Sign Up' ? 'Sign In' : 'Sign Up'));
+  };
+
   return (
-    <div>Login</div>
-  )
+    <div className="login">
+      <img src={logo} className="login-logo" alt="Netflix Logo" />
+      <div className="login-form">
+        <h2>{signState}</h2>
+        <form>
+          {signState === 'Sign Up' && <input type="text" placeholder="Your Name" />}
+          <input type="email" placeholder="Your Email" />
+          <input type="password" placeholder="Your Password" />
+          <button type="submit">{signState}</button>
+          <div className="form-help">
+            <div className="remember">
+              <label>
+                <input type="checkbox" /> Remember Me
+              </label>
+            </div>
+            <p>Need Help?</p>
+          </div>
+        </form>
+        <div className="form-switch">
+          {signState === 'Sign In' ? (
+            <p>
+              Already have an account?{' '}
+              <span onClick={toggleSignState}>Sign In Now</span>
+            </p>
+          ) : (
+            <p>
+              New to Netflix? <span onClick={toggleSignState}>Sign Up Now</span>
+            </p>
+          )}
+        </div>
+      </div>
+    </div>
+  );
 }
 
-export default Login
+export default Login;
