@@ -1,16 +1,36 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import './TitileCards.css';
-import cards_data from '../../assets/cards/Cards_data';
+import { Link } from 'react-router-dom';
 
-function TitileCards({title}) {
-  const cardsRef = useRef();
+function TitileCards({title,category}) {
+
+  const[apidata,setApiData] =useState([])
+
+    const cardsRef = useRef();
+
+  const options = {
+  method: 'GET',
+  headers: {
+    accept: 'application/json',
+    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxMzU5OWNiMTJhNzY2ZWM5ZjQ3MmE5ZWMyMzM2ZWJlNyIsIm5iZiI6MTc0NzExMjIzNi4xMTMsInN1YiI6IjY4MjJkMTJjOTdhNWUyY2U2MTJkMWU1ZCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.m-EoajQ6q0CzNaFLJwb65AfqZpgwN8YceeHFkSl24ao'
+  }
+};
+
+
 
   function handleWheel(event) {
-    event.preventDefault(); // Prevent the default scroll behavior
-    cardsRef.current.scrollLeft += event.deltaY; // Move horizontally based on deltaY
+    event.preventDefault();
+    cardsRef.current.scrollLeft += event.deltaY; 
   }
 
   useEffect(() => {
+
+    fetch(`https://api.themoviedb.org/3/movie/${category?category:'now_playing'}?language=en-US&page=1`, options)
+  .then(res => res.json())
+  .then(res => setApiData(res.results))
+  .catch(err => console.error(err));
+
+
     const cardsList = cardsRef.current;
   
     cardsList.addEventListener('wheel', handleWheel);
@@ -24,11 +44,11 @@ function TitileCards({title}) {
     <div className='title-cards'>
       <h2>{title?title:"Popular on Netflix"}</h2>
       <div className='cards-list' ref={cardsRef}>
-        {cards_data.map((card, index) => (
-          <div className='card' key={index}>
-            <img src={card.image} alt="" />
-            <p>{card.name}</p>
-          </div>
+        {apidata.map((card, index) => (
+          <Link  to={`/player/${card.id}`} className='card' key={index}>
+            <img src={`https://image.tmdb.org/t/p/w500`+card.backdrop_path} alt="" />
+            <p>{card.original_title}</p>
+          </Link>
         ))}
       </div>
     </div>

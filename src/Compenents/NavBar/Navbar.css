@@ -70,7 +70,9 @@
     pointer-events: auto;
     opacity: 1;
 }
-
+.nav-dark{
+    background: #141414;
+}
 
 
 @media (max-width: 768px) {
